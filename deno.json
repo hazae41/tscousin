@@ -1,0 +1,10 @@
+{
+  "name": "@hazae41/tscousin",
+  "version": "1.0.0",
+  "imports": {
+    "@/": "./src/"
+  },
+  "exports": {
+    ".": "./src/mod.ts"
+  }
+}

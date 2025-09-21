@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./itm",
+    "paths": {
+      "@/*": ["./*"]
+    } ,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "./out",
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true
+  },
+  "include": [
+    "./itm/**/*"
+  ],
+  "exclude": []
+}
