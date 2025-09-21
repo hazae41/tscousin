@@ -1,6 +1,6 @@
 # TSCousin
 
-Zero-config supply-chain hardened TypeScript relative paths rewriter
+Zero-config supply-chain hardened TypeScript paths and extensions rewriter
 
 ```bash
 npm install @hazae41/tscousin

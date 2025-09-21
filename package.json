@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@hazae41/tscousin",
-  "description": "Zero-config supply-chain hardened TypeScript relative paths rewriter",
+  "description": "Zero-config supply-chain hardened TypeScript paths and extensions rewriter",
   "version": "0.0.1",
   "scripts": {
     "prepare": "rm -rf ./out && tsc && deno -A ./src/mods/tscousin/bin.ts",
