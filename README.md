@@ -7,7 +7,7 @@ npm install -D @hazae41/tscousin
 ```
 
 ```bash
-deno install -gf -RW jsr:@hazae41/tscousin/bin
+deno install -gfn tscousin -RW jsr:@hazae41/tscousin/bin
 ```
 
 [**NPM 📦**](https://www.npmjs.com/package/@hazae41/tscousin) [**JSR 📦**](https://jsr.io/@hazae41/tscousin)
