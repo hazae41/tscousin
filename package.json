@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@hazae41/tscousin",
   "description": "Zero-config supply-chain hardened TypeScript relative paths rewriter",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "prepare": "rm -rf ./out && cp -r ./src/. ./itm && deno -A ./itm/mods/tscousin/bin.ts ./itm && tsc",
     "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
