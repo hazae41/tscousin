@@ -1,8 +1,8 @@
 import { dot } from "@/libs/dot/mod.ts";
+import { rename } from "@/libs/ext/mod.ts";
 import { walkSync } from "@/libs/walk/mod.ts";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { rename } from "../../libs/ext/mod.ts";
 
 // deno-lint-ignore no-namespace
 export namespace Cousin {
