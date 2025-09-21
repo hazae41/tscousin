@@ -22,67 +22,10 @@ deno install jsr:@hazae41/tscousin
 
 ## Usage
 
-### Before TSC (best)
-
-TSCousin will rewrite paths from ./itm and then TSC will transpile ./itm into ./out and also rewrite .ts imports into .js imports
-
-```bash
-cp -r ./src/. ./itm && tscousin ./itm && tsc
-```
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": "./itm",
-    "paths": {
-      "@/*": ["./*"]
-    } ,
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "outDir": "./out",
-    "declaration": true,
-    "rewriteRelativeImportExtensions": true
-  },
-  "include": [
-    "./itm/**/*"
-  ],
-  "exclude": []
-}
-```
-
-### After TSC (compatibility)
-
-TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out but you will still have .js or .ts imports
+TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out and also rewrite .ts imports into .js and .d.ts imports
 
 ```bash
 tsc && tscousin ./out
-```
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-    } ,
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "outDir": "./out",
-    "declaration": true
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": []
-}
-```
-
-### In-place (not recommended)
-
-TSCousin will destructively rewrite paths from ./src
-
-```bash
-tscousin ./src
 ```
 
 ```json
