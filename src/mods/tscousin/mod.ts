@@ -4,7 +4,6 @@ import { walkSync } from "@/libs/walk/mod.ts";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-// deno-lint-ignore no-namespace
 export namespace Cousin {
 
   export interface Config {
