@@ -8,7 +8,7 @@
     "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
   },
   "exports": {
-    ".": "./src/mod.ts"
+    ".": "./out/mod.js"
   },
   "bin": {
     "tscousin": "./out/mods/tscousin/bin.js"
