@@ -9,6 +9,7 @@ export namespace Cousin {
 
   export interface Config {
     readonly compilerOptions: {
+      readonly outDir: string
       readonly paths: Record<string, string[]>
     }
   }
@@ -18,12 +19,11 @@ export namespace Cousin {
 export class Cousin {
 
   constructor(
-    readonly target: string,
     readonly config: Cousin.Config
   ) { }
 
   rewrite() {
-    for (const file of walkSync(this.target)) {
+    for (const file of walkSync(this.config.compilerOptions.outDir)) {
       if (![".js", ".cjs", ".mjs", ".ts", ".tsx", ".jsx"].some(ext => file.endsWith(ext)))
         continue
       const original = readFileSync(file, "utf-8")
@@ -49,14 +49,14 @@ export class Cousin {
             continue
 
           if (to.endsWith("*")) {
-            const cousin = rename(file, path.resolve(this.target, to.slice(0, -1), target.slice(from.slice(0, -1).length)))
+            const cousin = rename(file, path.resolve(this.config.compilerOptions.outDir, to.slice(0, -1), target.slice(from.slice(0, -1).length)))
 
             if (cousin != null)
               return dot(path.relative(path.dirname(file), cousin))
 
             continue
           } else {
-            const cousin = rename(file, path.resolve(this.target, to))
+            const cousin = rename(file, path.resolve(this.config.compilerOptions.outDir, to))
 
             if (cousin != null)
               return dot(path.relative(path.dirname(file), cousin))
@@ -70,7 +70,7 @@ export class Cousin {
           if (to.endsWith("*"))
             throw new Error("Cannot rewrite non-wildcard to wildcard")
 
-          const cousin = rename(file, path.resolve(this.target, to))
+          const cousin = rename(file, path.resolve(this.config.compilerOptions.outDir, to))
 
           if (cousin != null)
             return dot(path.relative(path.dirname(file), cousin))

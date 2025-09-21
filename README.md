@@ -25,7 +25,7 @@ deno install jsr:@hazae41/tscousin
 TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out and also rewrite .ts imports into .js and .d.ts imports
 
 ```bash
-tsc && tscousin ./out
+tsc && tscousin
 ```
 
 ```json
