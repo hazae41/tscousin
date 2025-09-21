@@ -1,7 +1,5 @@
-#!/usr/bin/env node
-
+import { Cousin } from "@/mods/tscousin/mod.ts";
 import { existsSync, readFileSync } from "node:fs";
-import { Cousin } from "./mod.ts";
 
 if (!existsSync("./tsconfig.json"))
   throw new Error("Missing tsconfig.json")

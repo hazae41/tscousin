@@ -4,7 +4,7 @@
   "description": "Zero-config supply-chain hardened TypeScript paths and extensions rewriter",
   "version": "1.0.1",
   "scripts": {
-    "prepare": "rm -rf ./out && tsc && deno -A ./src/mods/tscousin/bin.ts",
+    "prepare": "rm -rf ./out && tsc && deno -RW ./src/bin.ts",
     "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
   },
   "files": [
@@ -14,7 +14,7 @@
     ".": "./out/mod.js"
   },
   "bin": {
-    "tscousin": "./out/mods/tscousin/bin.js"
+    "tscousin": "./out/bin.js"
   },
   "devDependencies": {
     "@types/node": "^24.5.2"

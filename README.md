@@ -3,14 +3,14 @@
 Zero-config supply-chain hardened TypeScript paths and extensions rewriter
 
 ```bash
-npm install @hazae41/tscousin
+npm install -D @hazae41/tscousin
 ```
 
 ```bash
-deno install jsr:@hazae41/tscousin
+deno install -g -RW jsr:@hazae41/tscousin/bin
 ```
 
-[**Node Package 📦**](https://www.npmjs.com/package/@hazae41/tscousin) [**JSR Package 📦**](https://jsr.io/@hazae41/tscousin)
+[**NPM 📦**](https://www.npmjs.com/package/@hazae41/tscousin) [**JSR 📦**](https://jsr.io/@hazae41/tscousin)
 
 ## Features
 

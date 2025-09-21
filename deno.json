@@ -6,7 +6,8 @@
     "@/": "./src/"
   },
   "exports": {
-    ".": "./src/mod.ts"
+    ".": "./src/mod.ts",
+    "./bin": "./src/bin.ts"
   },
   "lint": {
     "rules": {
