@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Cousin } from "@/mods/tscousin/mod.ts";
 import { existsSync, readFileSync } from "node:fs";
 
