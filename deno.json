@@ -1,6 +1,7 @@
 {
   "name": "@hazae41/tscousin",
   "version": "0.0.1",
+  "vendor": true,
   "imports": {
     "@/": "./src/"
   },
