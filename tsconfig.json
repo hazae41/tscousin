@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./itm",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
     } ,
@@ -8,11 +8,10 @@
     "moduleResolution": "nodenext",
     "outDir": "./out",
     "declaration": true,
-    "noCheck": true,
-    "rewriteRelativeImportExtensions": true
+    "noCheck": true
   },
   "include": [
-    "./itm/**/*"
+    "./src/**/*"
   ],
   "exclude": []
 }

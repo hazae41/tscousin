@@ -1,7 +1,8 @@
 import { dot } from "@/libs/dot/mod.ts";
 import { walkSync } from "@/libs/walk/mod.ts";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { rename } from "../../libs/ext/mod.ts";
 
 // deno-lint-ignore no-namespace
 export namespace Cousin {
@@ -48,19 +49,19 @@ export class Cousin {
             continue
 
           if (to.endsWith("*")) {
-            const retarget = path.join(this.target, to.slice(0, -1), target.slice(from.slice(0, -1).length))
+            const cousin = rename(file, path.resolve(this.target, to.slice(0, -1), target.slice(from.slice(0, -1).length)))
 
-            if (!existsSync(path.dirname(retarget)))
-              continue
+            if (cousin != null)
+              return dot(path.relative(path.dirname(file), cousin))
 
-            return dot(path.relative(path.dirname(file), retarget))
+            continue
           } else {
-            const retarget = path.join(this.target, to)
+            const cousin = rename(file, path.resolve(this.target, to))
 
-            if (!existsSync(path.dirname(retarget)))
-              continue
+            if (cousin != null)
+              return dot(path.relative(path.dirname(file), cousin))
 
-            return dot(path.relative(path.dirname(file), retarget))
+            continue
           }
         } else {
           if (target !== from)
@@ -69,15 +70,20 @@ export class Cousin {
           if (to.endsWith("*"))
             throw new Error("Cannot rewrite non-wildcard to wildcard")
 
-          const retarget = path.join(this.target, to)
+          const cousin = rename(file, path.resolve(this.target, to))
 
-          if (!existsSync(path.dirname(retarget)))
-            continue
+          if (cousin != null)
+            return dot(path.relative(path.dirname(file), cousin))
 
-          return dot(path.relative(path.dirname(file), retarget))
+          continue
         }
       }
     }
+
+    const cousin = rename(file, path.resolve(path.dirname(file), target))
+
+    if (cousin != null)
+      return dot(path.relative(path.dirname(file), cousin))
 
     return target
   }

@@ -4,7 +4,7 @@
   "description": "Zero-config supply-chain hardened TypeScript relative paths rewriter",
   "version": "0.0.1",
   "scripts": {
-    "prepare": "rm -rf ./out && cp -r ./src/. ./itm && deno -A ./itm/mods/tscousin/bin.ts ./itm && tsc",
+    "prepare": "rm -rf ./out && tsc && deno -A ./src/mods/tscousin/bin.ts ./out",
     "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
   },
   "exports": {
