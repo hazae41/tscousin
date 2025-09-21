@@ -12,5 +12,8 @@
   },
   "bin": {
     "tscousin": "./out/mods/tscousin/bin.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2"
   }
 }
