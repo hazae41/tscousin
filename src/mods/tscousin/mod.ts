@@ -9,8 +9,11 @@ export namespace Cousin {
 
   export interface Config {
     readonly compilerOptions: {
+
       readonly outDir: string
+
       readonly paths: Record<string, string[]>
+
     }
   }
 
