@@ -1,97 +1,105 @@
-# Rewind
+# TSCousin
 
-Just-in-time Tailwind compiler but supply-chain hardened
+Zero-config supply-chain hardened TypeScript relative paths rewriter
 
 ```bash
-deno install jsr:@hazae41/rewind
+npm install @hazae41/tscousin
 ```
 
-[**JSR Package 📦**](https://jsr.io/@hazae41/rewind)
+```bash
+deno install jsr:@hazae41/tscousin
+```
+
+[**Node Package 📦**](https://www.npmjs.com/package/@hazae41/tscousin) [**JSR Package 📦**](https://jsr.io/@hazae41/tscousin)
 
 ## Features
 
 ### Current features
-- 100% TypeScript and ESM
-- No external dependencies
-- Web-only API
-
-## Why
-
-This is the dependencies graph of the average Tailwind library
+- Uses your tsconfig.json
+- No external dependency
+- Clean and minimalist
+- Works on Deno too
 
 ## Usage
 
-Client-side any framework to DOM
+### Before TSC (best)
 
-```tsx
-await new Rewind(document).compile()
+TSCousin will rewrite paths from ./itm and then TSC will transpile ./itm into ./out and also rewrite .ts imports into .js imports
 
-// document now has a <style> with all your classes
-
-// it will automatically update when your classes are modified
+```bash
+cp -r ./src/. ./itm && tscousin ./itm && tsc
 ```
 
-Client-side pure React to DOM
-
-```tsx
-import { Rewind } from "@hazae41/rewind"
-import { createRoot } from "react-dom/client"
-
-function App() {
-  return <div className="text-2xl">Hello world</div>
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./itm",
+    "paths": {
+      "@/*": ["./*"]
+    } ,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "./out",
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true
+  },
+  "include": [
+    "./itm/**/*"
+  ],
+  "exclude": []
 }
-
-createRoot(root).render(<App />)
-
-await new Rewind(document).compile()
-
-// document now has a <style> with all your classes
-
-// it will automatically update when your classes are modified
 ```
 
-Server-side pure React to HTML
+### After TSC (compatibility)
 
-```tsx
-import { Rewind } from "@hazae41/rewind"
-import { DOMParser, XMLSerializer } from "..."
-import { renderToString } from "react-dom/static"
+TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out but you will still have .js or .ts imports
 
-function App() {
-  return <div className="text-2xl">Hello world</div>
+```bash
+tsc && tscousin ./out
+```
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    } ,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "./out",
+    "declaration": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": []
 }
-
-const html = renderToString(<App />)
-
-const document = new DOMParser().parseFromString(html, "text/html")
-
-await new Rewind(document).compile()
-
-// document now has a <style> with all your classes
-
-// you can serialize document to get your static html
-
-const html2 = new XMLSerializer().serializeToString(document)
 ```
 
-Any-side React any framework to DOM
+### In-place (not recommended)
 
-```tsx
-import { Rewind } from "@hazae41/rewind"
-import { useEffect } from "react"
+TSCousin will destructively rewrite paths from ./src
 
-export default function App() {
+```bash
+tscousin ./src
+```
 
-  useEffect(() => {
-    await new Rewind(document).compile()
-
-    // document now has a <style> with all your classes
-
-    // it will automatically update when your classes are modified
-  }, [])
-
-  return <div className="text-2xl">
-    Hello world
-  </div>
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    } ,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "./out",
+    "declaration": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": []
 }
 ```

@@ -8,6 +8,7 @@
     "moduleResolution": "nodenext",
     "outDir": "./out",
     "declaration": true,
+    "noCheck": true,
     "rewriteRelativeImportExtensions": true
   },
   "include": [
