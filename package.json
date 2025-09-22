@@ -6,7 +6,6 @@
   "homepage": "https://github.com/hazae41/tscousin",
   "repository": "github:hazae41/tscousin",
   "author": "hazae41",
-  "sideEffects": false,
   "scripts": {
     "prepare": "rm -rf ./out && tsc && deno -RW ./src/bin.ts",
     "version": "deno -RW ./vsync.ts && git add deno.json"
