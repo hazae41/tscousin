@@ -17,7 +17,8 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@types/node@^24.5.2"
+        "npm:@types/node@^24.5.2",
+        "npm:typescript@^5.9.2"
       ]
     }
   }

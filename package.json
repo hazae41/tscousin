@@ -17,6 +17,7 @@
     "tscousin": "./out/bin.js"
   },
   "devDependencies": {
-    "@types/node": "^24.5.2"
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2"
   }
 }
