@@ -31,8 +31,8 @@ export class Cousin {
       const original = readFileSync(file, "utf-8")
 
       const replaced = original
-        .replaceAll(/import (.+?) from "(.+?)"/g, (_, specifier, target) => `import ${specifier} from "${this.#rewrite(file, target)}"`)
-        .replaceAll(/export (.+?) from "(.+?)"/g, (_, specifier, target) => `export ${specifier} from "${this.#rewrite(file, target)}"`)
+        .replaceAll(/import (.+?) from "(.+?)"/g, (_, specifier, target) => file.endsWith(".d.ts") ? `import type ${specifier} from "${this.#rewrite(file, target)}"` : `import ${specifier} from "${this.#rewrite(file, target)}"`)
+        .replaceAll(/export (.+?) from "(.+?)"/g, (_, specifier, target) => file.endsWith(".d.ts") ? `export type ${specifier} from "${this.#rewrite(file, target)}"` : `export ${specifier} from "${this.#rewrite(file, target)}"`)
         .replaceAll(/require\("(.+?)"\)/g, (_, target) => `require("${this.#rewrite(file, target)}")`)
         .replaceAll(/import\("(.+?)"\)/g, (_, target) => `import("${this.#rewrite(file, target)}")`)
 
