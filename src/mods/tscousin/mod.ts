@@ -1,5 +1,5 @@
-import { dot } from "@/libs/dot/mod.ts";
-import { rename } from "@/libs/ext/mod.ts";
+import { find } from "@/libs/find/mod.ts";
+import { redot } from "@/libs/redot/mod.ts";
 import { walkSync } from "@/libs/walk/mod.ts";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -51,17 +51,17 @@ export class Cousin {
             continue
 
           if (to.endsWith("*")) {
-            const cousin = rename(file, path.resolve(this.config.compilerOptions.outDir, to.slice(0, -1), target.slice(from.slice(0, -1).length)))
+            const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, to.slice(0, -1), target.slice(from.slice(0, -1).length)))
 
-            if (cousin != null)
-              return dot(path.relative(path.dirname(file), cousin))
+            if (retarget != null)
+              return redot(path.relative(path.dirname(file), retarget))
 
             continue
           } else {
-            const cousin = rename(file, path.resolve(this.config.compilerOptions.outDir, to))
+            const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, to))
 
-            if (cousin != null)
-              return dot(path.relative(path.dirname(file), cousin))
+            if (retarget != null)
+              return redot(path.relative(path.dirname(file), retarget))
 
             continue
           }
@@ -72,20 +72,20 @@ export class Cousin {
           if (to.endsWith("*"))
             throw new Error("Cannot rewrite non-wildcard to wildcard")
 
-          const cousin = rename(file, path.resolve(this.config.compilerOptions.outDir, to))
+          const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, to))
 
-          if (cousin != null)
-            return dot(path.relative(path.dirname(file), cousin))
+          if (retarget != null)
+            return redot(path.relative(path.dirname(file), retarget))
 
           continue
         }
       }
     }
 
-    const cousin = rename(file, path.resolve(path.dirname(file), target))
+    const retarget = find(file, path.resolve(path.dirname(file), target))
 
-    if (cousin != null)
-      return dot(path.relative(path.dirname(file), cousin))
+    if (retarget != null)
+      return redot(path.relative(path.dirname(file), retarget))
 
     return target
   }

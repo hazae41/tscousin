@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 
-export function rename(file: string, target: string) {
+export function find(file: string, target: string) {
   if (existsSync(target))
     return target
 
@@ -9,6 +9,11 @@ export function rename(file: string, target: string) {
 
   if (existsSync(sibling))
     return sibling
+
+  const cousin = path.join(path.dirname(target), `${path.basename(target, path.extname(target))}.${path.extname(file).slice(1)}`)
+
+  if (existsSync(cousin))
+    return cousin
 
   return
 }
