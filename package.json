@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@hazae41/tscousin",
   "description": "Zero-config supply-chain hardened TypeScript paths and extensions rewriter",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "repository": "github:hazae41/tscousin",
   "author": "hazae41",
   "scripts": {
