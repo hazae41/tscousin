@@ -31,10 +31,12 @@ export class Cousin {
       const original = readFileSync(file, "utf-8")
 
       const replaced = original
-        .replaceAll(/import (.+?) from "(.+?)"/g, (_, specifier, target) => file.endsWith(".d.ts") && !specifier.startsWith("type") ? `import type ${specifier.replaceAll(" type ", " ")} from "${this.#rewrite(file, target)}"` : `import ${specifier} from "${this.#rewrite(file, target)}"`)
-        .replaceAll(/export (.+?) from "(.+?)"/g, (_, specifier, target) => file.endsWith(".d.ts") && !specifier.startsWith("type") ? `export type ${specifier.replaceAll(" type ", " ")} from "${this.#rewrite(file, target)}"` : `export ${specifier} from "${this.#rewrite(file, target)}"`)
-        .replaceAll(/require\("(.+?)"\)/g, (_, target) => `require("${this.#rewrite(file, target)}")`)
-        .replaceAll(/import\("(.+?)"\)/g, (_, target) => `import("${this.#rewrite(file, target)}")`)
+        .replaceAll(/import ["'](.+?)["']/g, (_, target) => file.endsWith(".d.ts") ? `import type "${this.#rewrite(file, target)}"` : `import "${this.#rewrite(file, target)}"`)
+        .replaceAll(/export ["'](.+?)["']/g, (_, target) => file.endsWith(".d.ts") ? `export type "${this.#rewrite(file, target)}"` : `export "${this.#rewrite(file, target)}"`)
+        .replaceAll(/import (.+) from ["'](.+)["']/g, (_, specifier, target) => file.endsWith(".d.ts") && !specifier.startsWith("type") ? `import type ${specifier.replaceAll(/type (\w+)/g, (_, type) => type)} from "${this.#rewrite(file, target)}"` : `import ${specifier} from "${this.#rewrite(file, target)}"`)
+        .replaceAll(/export (.+) from ["'](.+)["']/g, (_, specifier, target) => file.endsWith(".d.ts") && !specifier.startsWith("type") ? `export type ${specifier.replaceAll(/type (\w+)/g, (_, type) => type)} from "${this.#rewrite(file, target)}"` : `export ${specifier} from "${this.#rewrite(file, target)}"`)
+        .replaceAll(/require\(["'](.+)["']\)/g, (_, target) => `require("${this.#rewrite(file, target)}")`)
+        .replaceAll(/import\(["'](.+)["']\)/g, (_, target) => `import("${this.#rewrite(file, target)}")`)
 
       if (original === replaced)
         continue
