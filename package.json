@@ -6,7 +6,7 @@
   "repository": "github:hazae41/tscousin",
   "author": "hazae41",
   "scripts": {
-    "examine": "deno check ./src && deno lint ./src && deno test ./src",
+    "examine": "deno lint ./src && deno check ./src && deno test ./src",
     "prepare": "rm -rf ./out && tsc && deno -RW ./src/bin.ts",
     "version": "deno -RW ./vsync.ts && git add deno.json"
   },
