@@ -5,10 +5,10 @@ export function find(file: string, target: string) {
   if (existsSync(target))
     return target
 
-  if (!target.endsWith(".ts"))
+  if (![".ts", ".tsx"].some(x => target.endsWith(x)))
     return
 
-  const cousin = path.join(path.dirname(target), `${path.basename(target, ".ts")}.js`)
+  const cousin = path.join(path.dirname(target), `${path.basename(target, path.extname(target))}.js`)
 
   if (!existsSync(cousin))
     return
