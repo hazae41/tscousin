@@ -1,13 +1,14 @@
 import { find } from "@/libs/find/mod.ts";
 import { redot } from "@/libs/redot/mod.ts";
-import { walkSync } from "@/libs/walk/mod.ts";
-import { readFileSync, writeFileSync } from "node:fs";
+import { globSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 export namespace Cousin {
 
   export interface Config {
     readonly compilerOptions: {
+
+      readonly rootDir: string
 
       readonly outDir: string
 
@@ -25,7 +26,7 @@ export class Cousin {
   ) { }
 
   rewrite() {
-    for (const file of walkSync(this.config.compilerOptions.outDir)) {
+    for (const file of globSync(this.config.compilerOptions.outDir + "/**/*")) {
       if (!/\.(m)?(t|j)s(x)?$/.test(file))
         continue
       const original = readFileSync(file, "utf-8")

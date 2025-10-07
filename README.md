@@ -31,7 +31,7 @@ tsc && tscousin
 ```json
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "rootDir": "./src",
     "paths": {
       "@/*": ["./*"]
     } ,

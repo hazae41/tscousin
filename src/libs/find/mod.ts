@@ -5,7 +5,7 @@ export function find(file: string, target: string) {
   if (existsSync(target))
     return target
 
-  if (![".ts", ".tsx"].some(x => target.endsWith(x)))
+  if (!/\.(m)?ts(x)?$/.test(target))
     return
 
   const cousin = path.join(path.dirname(target), `${path.basename(target, path.extname(target))}.js`)
