@@ -8,4 +8,9 @@ if (!existsSync("./tsconfig.json"))
 
 const tsconfig = JSON.parse(readFileSync("./tsconfig.json", "utf-8"))
 
+if (tsconfig.compilerOptions.rootDir == null)
+  throw new Error("Your TypeScript config doesn't have a rootDir defined")
+if (tsconfig.compilerOptions.outDir == null)
+  throw new Error("Your TypeScript config doesn't have an outDir defined")
+
 new Cousin(tsconfig).rewrite()

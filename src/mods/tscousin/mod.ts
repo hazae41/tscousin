@@ -54,14 +54,14 @@ export class Cousin {
             continue
 
           if (to.endsWith("*")) {
-            const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, to.slice(0, -1), target.slice(from.slice(0, -1).length)))
+            const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, path.relative(this.config.compilerOptions.rootDir, to.slice(0, -1)), target.slice(from.slice(0, -1).length)))
 
             if (retarget != null)
               return redot(path.relative(path.dirname(file), retarget))
 
             continue
           } else {
-            const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, to))
+            const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, path.relative(this.config.compilerOptions.rootDir, to)))
 
             if (retarget != null)
               return redot(path.relative(path.dirname(file), retarget))
@@ -75,7 +75,7 @@ export class Cousin {
           if (to.endsWith("*"))
             throw new Error("Cannot rewrite non-wildcard to wildcard")
 
-          const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, to))
+          const retarget = find(file, path.resolve(this.config.compilerOptions.outDir, path.relative(this.config.compilerOptions.rootDir, to)))
 
           if (retarget != null)
             return redot(path.relative(path.dirname(file), retarget))

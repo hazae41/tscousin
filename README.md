@@ -36,7 +36,7 @@ tsc && tscousin
   "compilerOptions": {
     "rootDir": "./src",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     } ,
     "module": "nodenext",
     "moduleResolution": "nodenext",
