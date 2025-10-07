@@ -26,7 +26,7 @@ export class Cousin {
 
   rewrite() {
     for (const file of walkSync(this.config.compilerOptions.outDir)) {
-      if (![".js", ".cjs", ".mjs", ".ts", ".tsx", ".jsx"].some(ext => file.endsWith(ext)))
+      if (!/\.(m)?(t|j)s(x)?$/.test(file))
         continue
       const original = readFileSync(file, "utf-8")
 
