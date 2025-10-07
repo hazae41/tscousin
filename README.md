@@ -20,6 +20,9 @@ deno install -gfn tscousin -RW jsr:@hazae41/tscousin/bin
 - Clean and minimalist
 - Works on Deno too
 
+### Non features
+- CommonJS support
+
 ## Usage
 
 TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out and also rewrite .(m)ts(x) imports into .js imports
