@@ -22,7 +22,7 @@ deno install -gfn tscousin -RW jsr:@hazae41/tscousin/bin
 
 ## Usage
 
-TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out and also rewrite .ts imports into .js imports
+TSC will transpile ./src into ./out and then TSCousin will rewrite paths from ./out and also rewrite .(m)ts(x) imports into .js imports
 
 ```bash
 tsc && tscousin
