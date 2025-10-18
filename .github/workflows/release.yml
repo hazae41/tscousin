@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: "npm install -g deno"
-      - run: "npm ci --ignore-scripts"
+      - run: "npm ci && npm run prepack"
       - run: "npm diff --diff=$(jq -r '.name' package.json)@$(jq -r '.version' package.json)"
       - run: "[[ -z $(npm diff --diff=$(jq -r '.name' package.json)@$(jq -r '.version' package.json)) ]]"
       - run: "deno bundle --minify --output local ./src/mod.ts"
