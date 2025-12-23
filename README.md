@@ -6,11 +6,7 @@ Zero-config supply-chain hardened TypeScript paths and extensions rewriter
 npm install -D @hazae41/tscousin
 ```
 
-```bash
-deno install -gfn tscousin -RW jsr:@hazae41/tscousin/bin
-```
-
-[**📦 NPM**](https://www.npmjs.com/package/@hazae41/tscousin) • [**📦 JSR**](https://jsr.io/@hazae41/tscousin)
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/tscousin)
 
 ## Features
 
@@ -41,7 +37,8 @@ tsc && tscousin
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "outDir": "./out",
-    "declaration": true
+    "declaration": true,
+    "noCheck": true
   },
   "include": [
     "./src/**/*"
