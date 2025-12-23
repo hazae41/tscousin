@@ -1,18 +1,5 @@
 {
-  "name": "@hazae41/tscousin",
-  "version": "1.0.28",
   "imports": {
     "@/": "./src/"
-  },
-  "exports": {
-    ".": "./src/mod.ts",
-    "./bin": "./src/bin.ts"
-  },
-  "lint": {
-    "rules": {
-      "exclude": [
-        "no-namespace"
-      ]
-    }
   }
 }
