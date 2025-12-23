@@ -1,3 +1,5 @@
+// deno-lint-ignore-file no-namespace
+
 import { find } from "@/libs/find/mod.ts";
 import { redot } from "@/libs/redot/mod.ts";
 import { globSync, readFileSync, writeFileSync } from "node:fs";
